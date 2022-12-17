@@ -2,6 +2,7 @@ import pygame
 import numpy
 from disc import Disc
 
+#MMI
 
 class GameBoard:
     def __init__(self, window):
@@ -18,6 +19,7 @@ class GameBoard:
         pass
 
     def drop_token(self, column_no, color):
+        #JM
         x = 0
         y = 0
         # above to be updated basing on column number and game board size
@@ -29,4 +31,5 @@ class GameBoard:
         pass
 
     def check_success(self) -> bool:
+        # DP
         pass
