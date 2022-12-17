@@ -1,0 +1,32 @@
+import pygame
+import numpy
+from disc import Disc
+
+
+class GameBoard:
+    def __init__(self, window):
+        self.window = window
+        self.tokens = []
+        # self.width = self.image.get_width()
+        # self.height = self.image.get_height()
+
+        # placeholder for array with current state
+        # self.game_board_state = numpy.array()
+        pass
+
+    def draw(self):
+        pass
+
+    def drop_token(self, column_no, color):
+        x = 0
+        y = 0
+        # above to be updated basing on column number and game board size
+
+        token = Disc(color, x, y)
+        self.tokens.append(token)
+        # add 'animation'
+        # update board state
+        pass
+
+    def check_success(self) -> bool:
+        pass
