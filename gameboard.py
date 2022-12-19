@@ -41,8 +41,6 @@ class GameBoard:
         y = 0
         # above to be updated basing on column number and game board size
 
-        # add 'animation'
-
         # updating board state
         i = self.number_of_rows - 1
         while self.game_board_state[(i, column_no - 1)]:
@@ -53,6 +51,15 @@ class GameBoard:
             self.game_board_state[(i, column_no - 1)] = get_color_id(color)
         token = Disc(color, x, y)
         self.tokens.append(token)
+
+        # add 'animation'
+        for j in range(6):
+            if j < i:
+                self.tokens[-1].y += 100
+                self.draw()
+                for token in self.tokens:
+                    token.draw(self.window)
+                pygame.display.update()
 
     def check_success(self) -> bool:
         # DP

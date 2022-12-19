@@ -1,4 +1,5 @@
 import pygame
+import time
 from gameboard import GameBoard
 
 from control import select_column_by_key, select_column_by_mouse
@@ -33,6 +34,7 @@ def main():
                 current_color = 'yellow'
             else:
                 current_color = 'red'
+            time.sleep(0.25)
 
         window.fill((0, 0, 0))
         # window.blit(background, (0, 0))  # rysowanie tła
