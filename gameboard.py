@@ -48,6 +48,8 @@ class GameBoard:
         if i < 0:
             raise Exception(f'Column {column_no} is full - cannot add more discs to that column.')
         else:
+            drop_sound = pygame.mixer.Sound('sound/drop_sound.mp3')
+            pygame.mixer.Sound.play(drop_sound)
             self.game_board_state[(i, column_no - 1)] = get_color_id(color)
         token = Disc(color, x, y)
         self.tokens.append(token)
