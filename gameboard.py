@@ -43,9 +43,9 @@ class GameBoard:
 
         # updating board state
         i = self.number_of_rows - 1
-        while self.game_board_state[(i, column_no - 1)]:
+        while self.game_board_state[(i, column_no - 1)] and i >= 0:
             i -= 1
-        if i == 0:
+        if i < 0:
             raise Exception(f'Column {column_no} is full - cannot add more discs to that column.')
         else:
             self.game_board_state[(i, column_no - 1)] = get_color_id(color)
