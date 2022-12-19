@@ -1,5 +1,7 @@
 import pygame
-#JM
+
+
+# JM
 
 class Disc:
     def __init__(self, color, x, y):

@@ -2,10 +2,12 @@ import pygame
 from gameboard import GameBoard
 
 from control import select_column_by_key, select_column_by_mouse
-#AB
+
+# AB
 pygame.init()
 # window = pygame.display.set_mode((1652, 1416)) #zmniejszyc razy 2
 window = pygame.display.set_mode((1280, 720))
+
 
 def main():
     run = True
