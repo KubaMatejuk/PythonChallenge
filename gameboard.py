@@ -1,9 +1,10 @@
 import pygame
-import numpy
+import numpy as np
 from disc import Disc
 
 
 # MMI
+
 
 def get_color_id(color):
     if color == 'red':
@@ -21,7 +22,7 @@ class GameBoard:
         # self.height = self.image.get_height()
         self.number_of_columns = 7
         self.number_of_rows = 6
-        self.game_board_state = numpy.zeros((self.number_of_rows, self.number_of_columns))
+        self.game_board_state = np.zeros((self.number_of_rows, self.number_of_columns)).astype(int)
 
         pass
 
@@ -63,6 +64,22 @@ class GameBoard:
                     token.draw(self.window)
                 pygame.display.update()
 
-    def check_success(self) -> bool:
-        # DP
-        pass
+    def check_success(self, color: str) -> bool:
+        """
+        Checks if 4 of the same colored discs in a row are connected (either vertically, horizontally, or diagonally)
+
+        param: color_id - a color of players discs
+        """
+        # horizontal check
+        color_id = get_color_id(color)  # get index of color
+
+        for row in range(self.number_of_rows):
+            if color_id * 4 in ''.join(map(str, list(self.game_board_state[row]))):
+                return True
+
+        # vertical check
+        for column in range(self.number_of_columns):
+            if color_id * 4 in ''.join(map(str, list(self.game_board_state[:, column]))):
+                return True
+
+        # diagonal check
