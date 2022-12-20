@@ -71,7 +71,7 @@ class GameBoard:
         param: color_id - a color of players discs
         """
         # horizontal check
-        color_id = get_color_id(color)  # get index of color
+        color_id = str(get_color_id(color))  # get index of color
 
         for row in range(self.number_of_rows):
             if color_id * 4 in ''.join(map(str, list(self.game_board_state[row]))):

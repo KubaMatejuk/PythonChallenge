@@ -28,7 +28,7 @@ def main():
         column = select_column_by_key(keys)
         if column:
             game_board.drop_token(column, current_color)
-            if game_board.check_success():
+            if game_board.check_success(current_color):
                 # provide info about winner
                 run = False
             if current_color == 'red':
