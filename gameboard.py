@@ -18,8 +18,9 @@ class GameBoard:
     def __init__(self, window):
         self.window = window
         self.tokens = []
-        # self.width = 1652
+        self.width = 770
         # self.height = self.image.get_height()
+        self.height = 660
         self.number_of_columns = 7
         self.number_of_rows = 6
         self.game_board_state = np.zeros((self.number_of_rows, self.number_of_columns)).astype(int)
@@ -37,9 +38,9 @@ class GameBoard:
         :return:
         """
         # JM
-        x_for_column_list = [0, 160, 320, 480, 640, 800, 960, 1120]
+        x_for_column_list = [0, 0, 110, 220, 330, 440, 550, 660, 770]
         x = x_for_column_list[column_no]
-        y = 0
+        y = 100
         # above to be updated basing on column number and game board size
 
         # updating board state
@@ -58,7 +59,7 @@ class GameBoard:
         # add 'animation'
         for j in range(6):
             if j < i:
-                self.tokens[-1].y += 100
+                self.tokens[-1].y += 110
                 self.draw()
                 for token in self.tokens:
                     token.draw(self.window)

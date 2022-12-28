@@ -15,4 +15,4 @@ class Disc:
             self.disc_image = pygame.image.load("red_disc.png")
         elif self.color == 'yellow':
             self.disc_image = pygame.image.load("yellow_disc.png")
-        window.blit(self.disc_image, (self.x, self.y))
+        window.blit(pygame.transform.scale(self.disc_image, (110, 110)), (self.x, self.y))
