@@ -24,7 +24,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # when usr will close window
                 run = False
-
+        window.fill((0, 0, 0))
+        background = pygame.image.load("4intherow_background.png")
+        window.blit(background, (0, 0))  # rysowanie tła
         keys = pygame.key.get_pressed()
         # probably need to add similar as above for mouse
 
@@ -35,7 +37,6 @@ def main():
         else:
             text_color = (255, 0, 0)  # red color
         player.draw(window, (current_color + " player turn"), font, text_color, 280, 10)
-        pygame.display.update()
 
         column = select_column_by_key(keys)
         if column:
@@ -49,13 +50,13 @@ def main():
                 current_color = 'red'
             time.sleep(0.25)
 
-        window.fill((0, 0, 0))
-        background = pygame.image.load("4intherow_background.png")
+
+
         game_board.draw()
         for token in game_board.tokens:
             token.draw(window)
-        pygame.display.update()
-        # window.blit(background, (0, 0))  # rysowanie tła
+
+
         pygame.display.update()
 
 
