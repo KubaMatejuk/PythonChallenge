@@ -72,15 +72,26 @@ class GameBoard:
         param: color_id - a color of players discs
         """
         # horizontal check
-        color_id = str(get_color_id(color))  # get index of color
+        color_id = get_color_id(color)  # get index of color
 
         for row in range(self.number_of_rows):
-            if color_id * 4 in ''.join(map(str, list(self.game_board_state[row]))):
+            if str(color_id) * 4 in ''.join(map(str, list(self.game_board_state[row]))):
                 return True
 
         # vertical check
         for column in range(self.number_of_columns):
-            if color_id * 4 in ''.join(map(str, list(self.game_board_state[:, column]))):
+            if str(color_id) * 4 in ''.join(map(str, list(self.game_board_state[:, column]))):
                 return True
 
         # diagonal check
+        for row in range(self.number_of_rows - 3):  # use 3 to create minor matrices 4x4 and calculate trace of matrices
+            for column in range(self.number_of_columns - 3):
+                sub_game_board_state = self.game_board_state[row:row + 4, column:column + 4]
+                result = color_id * 4
+
+                # trace is the sum of elements on the main diagonal in a matrix - it covers all negatives slopes
+                # of 4 in the row, to check positives slope it is required to use mirror reflection using fliplr
+                if ((np.trace(sub_game_board_state) == result and sub_game_board_state[(0, 0)] == color_id) or
+                        (np.trace(np.fliplr(sub_game_board_state)) == result and
+                         np.fliplr(sub_game_board_state)[(0, 0)] == color_id)):
+                    return True
