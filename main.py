@@ -43,6 +43,7 @@ def main():
             game_board.drop_token(column, current_color)
             if game_board.check_success(current_color):
                 # provide info about winner
+                print(f"{current_color} won!")
                 run = False
             if current_color == 'red':
                 current_color = 'yellow'
