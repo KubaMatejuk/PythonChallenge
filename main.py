@@ -3,10 +3,11 @@ import time
 from gameboard import GameBoard
 
 from control import select_column_by_key, select_column_by_mouse
-import player
+import display
+from tkinter import *
+from tkinter import messagebox
 
 
-# AB
 pygame.init()
 pygame.mixer.init()
 # window = pygame.display.set_mode((1652, 1416)) #zmniejszyc razy 2
@@ -15,6 +16,9 @@ pygame.display.set_caption("Four in the Row")
 
 
 def main():
+    # JM - ekran powitalny
+    # DP - menu
+
     run = True
     game_board = GameBoard(window)
     current_color = 'yellow'
@@ -36,27 +40,31 @@ def main():
             text_color = (255, 255, 50)  # yellow color
         else:
             text_color = (255, 0, 0)  # red color
-        player.draw(window, (current_color + " player turn"), font, text_color, 280, 10)
+        display.draw(window, (current_color + " player turn"), font, text_color, 280, 10)
 
         column = select_column_by_key(keys)
         if column:
-            game_board.drop_token(column, current_color)
-            if game_board.check_success(current_color):
-                # provide info about winner
-                print(f"{current_color} won!")
-                run = False
-            if current_color == 'red':
-                current_color = 'yellow'
-            else:
-                current_color = 'red'
-            time.sleep(0.25)
+            try:
+                game_board.drop_token(column, current_color)
 
-
+                if game_board.check_success(current_color):
+                    # provide info about winner
+                    Tk().wm_withdraw()  # to hide the main window
+                    messagebox.showinfo("Success", f"{current_color.upper()} player won!")
+                    print(f"{current_color} won!")
+                    run = False
+                if current_color == 'red':
+                    current_color = 'yellow'
+                else:
+                    current_color = 'red'
+                time.sleep(0.25)
+            except Exception as e:
+                Tk().wm_withdraw()  # to hide the main window
+                messagebox.showwarning("Warning", e)
 
         game_board.draw()
         for token in game_board.tokens:
             token.draw(window)
-
 
         pygame.display.update()
 
