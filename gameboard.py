@@ -94,3 +94,8 @@ class GameBoard:
                 if all(np.diagonal(sub_game_board_state) == color_id) or \
                    all(np.diagonal(np.fliplr(sub_game_board_state)) == color_id):
                     return True
+
+    def check_draw(self):
+        # check for a draw
+        if all(self.game_board_state.flatten() != 0):
+            return True

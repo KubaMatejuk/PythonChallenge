@@ -53,6 +53,10 @@ def main():
                     messagebox.showinfo("Success", f"{current_color.upper()} player won!")
                     print(f"{current_color} won!")
                     run = False
+                if game_board.check_draw():
+                    Tk().wm_withdraw()
+                    messagebox.showinfo("Draw", "It's a draw!")
+                    run = False
                 if current_color == 'red':
                     current_color = 'yellow'
                 else:
