@@ -87,11 +87,10 @@ class GameBoard:
         for row in range(self.number_of_rows - 3):  # use 3 to create minor matrices 4x4 and calculate trace of matrices
             for column in range(self.number_of_columns - 3):
                 sub_game_board_state = self.game_board_state[row:row + 4, column:column + 4]
-                result = color_id * 4
 
-                # trace is the sum of elements on the main diagonal in a matrix - it covers all negatives slopes
-                # of 4 in the row, to check positives slope it is required to use mirror reflection using fliplr
-                if ((np.trace(sub_game_board_state) == result and sub_game_board_state[(0, 0)] == color_id) or
-                        (np.trace(np.fliplr(sub_game_board_state)) == result and
-                         np.fliplr(sub_game_board_state)[(0, 0)] == color_id)):
+                # diagonal is the list of elements a_{ij} in matrix where i == j, condition for diagonal check
+                # searches for 4 the same values in the main diagonal of a matrix,
+                # to check positive slopes it is required to use mirror reflection using fliplr
+                if all(np.diagonal(sub_game_board_state) == color_id) or \
+                   all(np.diagonal(np.fliplr(sub_game_board_state)) == color_id):
                     return True
