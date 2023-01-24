@@ -3,7 +3,7 @@ import time
 from gameboard import GameBoard
 
 from control import select_column_by_key, select_column_by_mouse
-import display
+from display import text_object, button
 from tkinter import *
 from tkinter import messagebox
 
@@ -40,7 +40,7 @@ def main():
             text_color = (255, 255, 50)  # yellow color
         else:
             text_color = (255, 0, 0)  # red color
-        display.draw(window, (current_color + " player turn"), font, text_color, 280, 10)
+        text_object(window, (current_color + " player turn"), font, text_color, 280, 10)
 
         column = select_column_by_key(keys)
         if column:
@@ -73,5 +73,24 @@ def main():
         pygame.display.update()
 
 
+def menu():
+    run = True
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+        window.fill((0, 0, 0))
+        text_object(window, "CONNECT", pygame.font.SysFont("arial", 40), (255, 255, 255), 250, 20)
+        text_object(window, "4", pygame.font.SysFont("arial", 60), (255, 0, 0), 450, 10)
+
+        button(window, "Start a game", 250, 350, 230, 50, None, None, main)
+
+        # TODO: singleplayer choice, multiplayer choice, exit, settings
+        # TODO: find a better way to manage fonts and colors of text objects
+
+        pygame.display.update()
+
+
 if __name__ == "__main__":
-    main()
+    menu()
