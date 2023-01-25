@@ -8,6 +8,15 @@ from tkinter import *
 from tkinter import messagebox
 
 
+BLACK_COLOR = (0, 0, 0)
+BUTTON_IDLE_COLOR = (0, 82, 204)
+BUTTON_ACTIVE_COLOR = (77, 148, 255)
+BUTTON_TEXT_IDLE_COLOR = (0, 0, 0)
+BUTTON_TEXT_ACTIVE_COLOR = (255, 255, 255)
+MENU_TEXT_COLOR = (0, 0, 0)
+MENU_TITLE_COLOR = (51, 133, 255)
+MENU_DISC_COLOR = (204, 224, 255)
+
 pygame.init()
 pygame.mixer.init()
 # window = pygame.display.set_mode((1652, 1416)) #zmniejszyc razy 2
@@ -80,16 +89,38 @@ def menu():
             if event.type == pygame.QUIT:
                 run = False
 
-        window.fill((0, 0, 0))
-        text_object(window, "CONNECT", pygame.font.SysFont("arial", 40), (255, 255, 255), 250, 20)
-        text_object(window, "4", pygame.font.SysFont("arial", 60), (255, 0, 0), 450, 10)
+        window.fill(BLACK_COLOR)  # clear all drawings
+        background = pygame.image.load("4intherow_background.png")
+        background.set_alpha(125)  # display a transparent image to distinguish menu and gameplay
+        window.blit(background, (0, 0))  # use 4intherow board as a background
 
-        button(window, "Start a game", 250, 350, 230, 50, None, None, main)
+        # visualization in the menu: a disc following the mouse's position only if mouse's coordinates are inside window
+        mouse = pygame.mouse.get_pos()
+        if 0 < mouse[0] < 769 and 759 > mouse[1] > 110:
+            x_circle = int(mouse[0]/110)*110 + 55
+            y_circle = int(mouse[1]/110 - 1)*110+100 + 55
 
-        # TODO: singleplayer choice, multiplayer choice, exit, settings
-        # TODO: find a better way to manage fonts and colors of text objects
+            pygame.draw.circle(window, MENU_DISC_COLOR, (x_circle, y_circle), 55)
 
-        pygame.display.update()
+        # text objects and buttons
+        text_object(window, "CONNECT 4", pygame.font.SysFont("arial", 120), MENU_TITLE_COLOR, 40, 30)
+
+        # TODO: how we can deal with different length of text in button? Find a way to center text automatically
+        button(window, " Singleplayer", 200, 200, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
+               BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, main)
+
+        button(window, "  Multiplayer", 200, 300, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
+               BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, main)
+
+        button(window, "     Settings", 200, 400, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
+               BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, main)
+
+        button(window, "        Exit", 200, 500, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
+               BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, main)
+
+        # TODO: find a better way to manage fonts of text objects
+
+        pygame.display.flip()
 
 
 if __name__ == "__main__":
