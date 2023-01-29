@@ -116,12 +116,17 @@ def menu():
                BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, main)
 
         button(window, "        Exit", 200, 500, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
-               BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, main)
+               BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, quit_game)
 
         # TODO: find a better way to manage fonts of text objects
 
         pygame.display.flip()
 
 
+def quit_game():
+    pygame.display.quit()
+    exit()
+
+    
 if __name__ == "__main__":
     menu()
