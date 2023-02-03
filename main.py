@@ -105,20 +105,17 @@ def menu():
         # text objects and buttons
         text_object(window, "CONNECT 4", pygame.font.SysFont("arial", 120), MENU_TITLE_COLOR, 40, 30)
 
-        # TODO: how we can deal with different length of text in button? Find a way to center text automatically
-        button(window, " Singleplayer", 200, 200, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
+        button(window, "Singleplayer", 200, 200, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
                BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, main)
 
-        button(window, "  Multiplayer", 200, 300, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
+        button(window, "Multiplayer", 200, 300, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
                BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, main)
 
-        button(window, "     Settings", 200, 400, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
+        button(window, "Settings", 200, 400, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
                BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, main)
 
-        button(window, "        Exit", 200, 500, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
+        button(window, "Exit", 200, 500, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
                BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, quit_game)
-
-        # TODO: find a better way to manage fonts of text objects
 
         pygame.display.flip()
 

@@ -48,6 +48,8 @@ class GameBoard:
         while self.game_board_state[(i, column_no - 1)] and i >= 0:
             i -= 1
         if i < 0:
+            incorrect_sound = pygame.mixer.Sound('sound/incorrect_move.mp3')
+            pygame.mixer.Sound.play(incorrect_sound)
             raise Exception(f'Column {column_no} is full - cannot add more discs to that column.')
         else:
             drop_sound = pygame.mixer.Sound('sound/drop_sound.mp3')
