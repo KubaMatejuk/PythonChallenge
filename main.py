@@ -103,7 +103,8 @@ def menu():
             pygame.draw.circle(window, MENU_DISC_COLOR, (x_circle, y_circle), 55)
 
         # text objects and buttons
-        text_object(window, "CONNECT 4", pygame.font.SysFont("arial", 120), MENU_TITLE_COLOR, 40, 30)
+        text_object(window, "CONNECT 4", pygame.font.SysFont("arial", 120), MENU_TITLE_COLOR,
+                    pygame.display.Info().current_w/2, pygame.display.Info().current_h*0.1)
 
         button(window, "Singleplayer", 200, 200, 375, 75, BUTTON_IDLE_COLOR, BUTTON_ACTIVE_COLOR,
                BUTTON_TEXT_IDLE_COLOR, BUTTON_TEXT_ACTIVE_COLOR, main)
